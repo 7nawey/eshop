@@ -21,14 +21,16 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              "src/assets", "src/assets/images",
               {
                 "glob": "**/*",
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ],
+           "styles": [
+  "src/styles.css", 
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+],
             "scripts": []
           },
           "configurations": {
@@ -92,5 +94,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "d9e003e8-08c9-466d-9488-e5d8df58ead0"
   }
 }

@@ -1,0 +1,31 @@
+<div class="card h-100">
+  <a [routerLink]="['/product', product.productId]">
+    <img [src]="product.thumbnail" class="card-img-top" [alt]="product.title">
+  </a>
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">{{ product.price | currency }}</p>
+    <div class="d-flex justify-content-between align-items-center">
+      <div [ngClass]="{'text-success': product.stock > 0, 'text-danger': product.stock === 0}">
+        {{ product.stock > 0 ? 'In Stock' : 'Out of Stock' }}
+      </div>
+      <div class="rating">
+        <i *ngFor="let star of [1,2,3,4,5]" 
+            class="bi" 
+            [ngClass]="star <= product.rating ? 'bi-star-fill text-warning' : 'bi-star'"></i>
+      </div>
+    </div>
+
+    <!-- زر الإضافة إلى السلة -->
+    <button class="btn btn-primary mt-2 w-100" 
+            [disabled]="product.stock === 0"
+            (click)="onAddToCart()">
+      Add to Cart
+    </button>
+
+    <!-- ✅ رسالة التأكيد بعد الإضافة -->
+    <div *ngIf="isAddedToCart" class="alert alert-success mt-2">
+      Product added to cart successfully! 🛒
+    </div>
+  </div>
+</div>

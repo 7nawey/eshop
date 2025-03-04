@@ -1,0 +1,33 @@
+<div class="cart-container card p-3">
+    <h2 class="text-center">Shopping Cart</h2>
+  
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <ul class="list-group">
+        <li *ngFor="let item of cartItems" class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
+            <img [src]="item.product.thumbnail" alt="{{ item.product.title }}" class="cart-img me-3">
+            <div>
+              <h5>{{ item.product.title }}</h5>
+              <p class="mb-0">Price: {{ item.product.price | currency }}</p>
+              <p class="mb-0 text-muted">Quantity: {{ item.quantity }}</p>
+            </div>
+          </div>
+
+          <div>
+            <!-- زر تقليل الكمية -->
+            <button class="btn btn-warning btn-sm me-2" (click)="decreaseQuantity(item.product)">-</button>
+            <button class="btn btn-warning btn-sm me-2" (click)="increaseQuantity(item.product)">+</button>
+
+            <!-- زر حذف المنتج بالكامل -->
+            <button class="btn btn-danger btn-sm" (click)="removeItem(item.product)">Remove</button>
+          </div>
+        </li>
+      </ul>
+
+      <button class="btn btn-danger mt-3 w-100" (click)="clearCart()">Clear Cart</button>
+    </div>
+  
+    <ng-template #emptyCart>
+      <p class="text-center text-muted">Your cart is empty.</p>
+    </ng-template>
+</div>
